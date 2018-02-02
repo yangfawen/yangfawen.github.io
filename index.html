@@ -2,14 +2,13 @@
 <html lang="zh-cn">
 
 <head>
-    <title>Kizunaai-WebView</title>
+    <title>Kizunaai</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link href="css/jquery-accordion-menu.css" rel="stylesheet" type="text/css" />
     <link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="css/index.css">
-    <!--     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
@@ -58,7 +57,6 @@
         left: 45%;
     }
 
-    #text {}
     </style>
 </head>
 
@@ -71,26 +69,15 @@
             <div id="jquery-accordion-menu" class="jquery-accordion-menu red">
                 <div class="jquery-accordion-menu-header">Kizuna AI</div>
                 <ul id="demo-list">
-                    <li><a href="#">模型 </a><span class="jquery-accordion-menu-label">5</span>
+                    <li><a href="#">模型</a><span class="jquery-accordion-menu-label">5</span>
                         <ul class="submenu" id="model_choise">
                         </ul>
                     </li>
-                    <li><a href="#">动作 </a><span class="jquery-accordion-menu-label">5</span>
+                    <!--<li><a href="#">动作</a><span class="jquery-accordion-menu-label">5</span>
                         <ul class="submenu" id="vmd_choise">
                         </ul>
-                    </li>
-                    <!--<li><a href="#">BGM </a><span class="jquery-accordion-menu-label">5</span>
-                        <ul class="submenu" id="musik_choise">
-                        </ul>
                     </li>-->
-                    <li><a href="#">背景 </a><span class="jquery-accordion-menu-label">0</span>
-                        <ul class="submenu" id="background_choise">
-                        </ul>
-                    </li>
                 </ul>
-                <div class="jquery-accordion-menu-footer">
-                    <a href="https://www.kizunaai.moe" target="_blank">主站</a>
-                </div>
             </div>
             <button class="close-button" id="close-button">Close Menu</button>
         </div>
@@ -114,7 +101,6 @@
     <script src="js/classie.js"></script>
     <script src="js/index.js"></script>
     <script type="text/javascript">
-    //$("#model_choise").load(function(){alert("loading")});
     //初始化开始
     var container, stats;
     var mesh, camera, scene, renderer, effect;
@@ -129,10 +115,7 @@
     var vmdFiles; //动作文件
     var audioFiles; //声音文件
     var bgFiles; //背景文件
-    //var hover;//加载遮罩层
     var onLoadPresent; //全局加载进度
-    //hover = document.body.appendChild('hover');
-    //hover.setAttribute('id', 'hover');
     modelFile = 'model/kizunaai/kizunaai.pmx';
     vmdFiles = ['vmd/pinkcat.vmd'];
     audioFiles = 'audio/pinkcat.mp3';
@@ -148,7 +131,7 @@
             'path': 'model/amatsukaze/天津風.pmx',
             'choose': false,
         },
-        
+
         {
             'name': 'Lat Miku',
             'path': 'model/miku_lat/mikuVer2.31_Normal.pmd',
@@ -196,32 +179,6 @@
             'choose': false,
         },
     ];
-    /**var data_musik = [{
-            'name': 'Pink Cat',
-            'path': 'audio/pinkcat.mp3',
-            'choose': true,
-        },
-        {
-            'name': '右肩の蝶',
-            'path': 'audio/youjiannodie.mp3',
-            'choose': false,
-        },
-        {
-            'name': '炉心融解',
-            'path': 'audio/luxinrongjie.mp3',
-            'choose': false,
-        },
-        {
-            'name': '深海少女',
-            'path': 'audio/shenhaishaonv.mp3',
-            'choose': false,
-        },
-        {
-            'name': 'Masked bitch',
-            'path': 'audio/Masked bitch.mp3',
-            'choose': false,
-        }
-    ];**/
     var data_background = [{
         'name': '233',
         'path': 'bg/233',
@@ -242,10 +199,8 @@
 
         container = document.createElement('div');
         container.setAttribute('id', 'mmd');
-        //document.body.appendChild(audioplayer);
-        // document.body.appendChild(container);
+
         document.getElementById("box").appendChild(container);
-        //audioplayer.src = audioFiles;
         //画面初始化
         camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 2000);
         camera.position.z = 30;
@@ -254,7 +209,6 @@
         scene.background = new THREE.Color(0xffffff);
         var gridHelper = new THREE.PolarGridHelper(30, 10);
         gridHelper.position.y = -10;
-        //scene.add( gridHelper );//地面
         var ambient = new THREE.AmbientLight(0x666666);
         scene.add(ambient);
         var directionalLight = new THREE.DirectionalLight(0x887766);
@@ -273,7 +227,6 @@
         var onProgress = function(xhr) {
             if (xhr.lengthComputable) {
                 var percentComplete = xhr.loaded / xhr.total * 100;
-                //onLoadPersent = Math.round(percentComplete, 2);
                 if (percentComplete == 100) {
                     onLoadComplete();
                 }
@@ -281,8 +234,6 @@
             }
         };
         var onError = function(xhr) {};
-        //var modelFile = 'models/mmd/kizunaai/kizunaai.pmx';
-        //var vmdFiles = ['models/mmd/vmds/小苹果 单人.vmd'];
         helper = new THREE.MMDHelper();
         var loader = new THREE.MMDLoader();
         loader.load(modelFile, vmdFiles, function(object) {
@@ -306,7 +257,6 @@
             physicsHelper.visible = false;
             scene.add(physicsHelper);
             helper.unifyAnimationDuration({ afterglow: 2.0 });
-            //initGui();//删除右上角控制
         }, onProgress, onError);
         var controls = new THREE.OrbitControls(camera, renderer.domElement);
         window.addEventListener('resize', onWindowResize, false);
@@ -323,45 +273,6 @@
             }
             phongMaterials = array;
         }
-        /**function initGui () {
-            var api = {
-                'animation': false,
-                'gradient mapping': true,
-                'ik': true,
-                'outline': true,
-                'physics': true,
-                'show IK bones': false,
-                'show rigid bodies': false
-            };
-            var gui = new dat.GUI();
-            gui.add( api, 'animation' ).onChange( function () {
-                helper.doAnimation = api[ 'animation' ];
-            } );
-            gui.add( api, 'gradient mapping' ).onChange( function () {
-                if ( originalMaterials === undefined ) originalMaterials = mesh.material;
-                if ( phongMaterials === undefined ) makePhongMaterials( mesh.material );
-                if ( api[ 'gradient mapping' ] ) {
-                    mesh.material = originalMaterials;
-                } else {
-                    mesh.material = phongMaterials;
-                }
-            } );
-            gui.add( api, 'ik' ).onChange( function () {
-                helper.doIk = api[ 'ik' ];
-            } );
-            gui.add( api, 'outline' ).onChange( function () {
-                //effect.enabled = api[ 'outline' ];
-            } );
-            gui.add( api, 'physics' ).onChange( function () {
-                helper.enablePhysics( api[ 'physics' ] );
-            } );
-            gui.add( api, 'show IK bones' ).onChange( function () {
-                ikHelper.visible = api[ 'show IK bones' ];
-            } );
-            gui.add( api, 'show rigid bodies' ).onChange( function () {
-                if ( physicsHelper !== undefined ) physicsHelper.visible = api[ 'show rigid bodies' ];
-            } );
-        }**/
     }
 
     function onWindowResize() {
@@ -389,9 +300,8 @@
     function rerender() {
         //重播先删除再重建画面和音乐播放器
         var mmd = document.getElementById('box');
-        //var audio = document.getElementById('player');
         audioplayer.pause();
-        
+
         $('canvas').remove();
         $(audioplayer).remove();
         init();
@@ -409,13 +319,12 @@
         audioplayer.play();
     }
     /**function start() {
-    
+
     }**/
     function onLoadComplete() {
         if (document.getElementById('hover')) {
                 document.body.removeChild(document.getElementById('hover'));
         }
-        //setTimeout("musik_player()", 1000);
 
     }
     //初始化侧边栏的内容
@@ -439,16 +348,6 @@
             }
         };
     });
-    /**$('#musik_choise').ready(function() {
-        console.log('music ready');
-        for (i in data_musik) {
-            if (data_musik[i].choose) {
-                $('#musik_choise').append('<li class="active"><a href="#" onclick="musik_change(' + i + ')">' + data_musik[i].name + "</a></li>")
-            } else {
-                $('#musik_choise').append('<li><a href="#" onclick="musik_change(' + i + ')">' + data_musik[i].name + "</a></li>")
-            }
-        }
-    });**/
     $('#background_choise').ready(function() {
         console.log('background ready');
         for (i in data_background) {
@@ -484,17 +383,6 @@
         data_vmd[x].choose = true;
         rerender();
     }
-
-    /**function musik_change(x) {
-        console.log('music changed,rerend page');
-        //audioFiles = data_musik[x].path;
-        for (i in data_musik) {
-            data_musik[i].choose = false;
-        }
-        data_musik[x].choose = true;
-        rerender();
-        audioFiles = data_musik[x].path;
-    }**/
 
     function background_change(x) {
         console.log('background changed,rerend page');
