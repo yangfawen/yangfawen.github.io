@@ -43,7 +43,8 @@
 - - - -
 ![](img/Phoenix_QR.png)
 - - - -
-**WebAR场景**：扫描如下二维码后再扫描识别图体验，识别图为淳萃官网Banner，地址为：
+**WebAR场景**：扫描如下二维码后再扫描识别图体验，识别图为淳萃官网Banner，地址为：https://www.ultradoux.com.cn/
+也可以直接获取识别图：https://github.com/yangfawen/yangfawen.github.io/tree/master/Samples/WebAR/Marker
 - - - -
 ![](img/DOUX_QR.png)
 
