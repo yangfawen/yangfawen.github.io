@@ -87,6 +87,16 @@
 - - - -
 ![](img/N19.png)
 - - - -
+#### 模型的环境贴图设置
+RAVVAR WebAR/3D采用了新一代渲染技术（PBR），这也意味着模型效果的好坏有很大程度取决于环境贴图是否合适，当前我们内置了9个环境贴图，您可以这样来切换：
+```
+将WebAR/3D的链接修改为如下：
+https://cloud.ravvar.cn/web3d/?env=metal#!scene/11778
+当前内置的环境贴图分别为：
+white、black、bridge、metal、parkday、parkngiht、skybox、skybox2、space，缺省时为parkday
+
+```
+- - - -
 ### 2.3.3WebAR场景示例
 **示例中所用到的资源：**刘昊然祝福语音、刘昊然祝福视频动画、按钮（再玩一次、立即购买）
 **资源地址：**
